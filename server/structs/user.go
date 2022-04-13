@@ -20,7 +20,7 @@ type User struct {
 	//other details
 	Occupation     string `json:"occupation"`
 	Religion       string `json:"religion"`
-	MarritalStatus bool   `json:"marritalStatus"`
+	MarritalStatus string `json:"marritalStatus"`
 	BloodGroup     string `json:"bloodGroup"`
 	Nationality    string `json:"nationality"`
 }
