@@ -2,16 +2,18 @@ import {Field} from 'formik'
 
 interface TextInputProps{
     name:string,
-    placeholder:string,
+    placeholder?:string,
     type:string,
-    width:string
+    width:string,
+    value?:string
   }
   
 export const TextInput:React.FC<TextInputProps> = ({
     name,
     placeholder,
     type,
-    width
+    width,
+    value
 }) => {
     return (
         <div>
@@ -26,6 +28,7 @@ export const TextInput:React.FC<TextInputProps> = ({
                     marginLeft:"20px",
                     width
                 }}
+                value={value}
             />
         </div>
     )

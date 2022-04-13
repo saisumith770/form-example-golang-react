@@ -4,6 +4,7 @@ import './App.css'
 import { PersonalDetails } from './components/personal_details';
 import { ContactDetails } from './components/contact_details';
 import { User } from './types/user';
+import { AddressDetails } from './components/address_details';
 
 const initialValues:User = {
   name:"",
@@ -17,7 +18,7 @@ const initialValues:User = {
   address:"",
   bloodGroup:"",
   city:"",
-  country:"",
+  country:"India",
   email:"",
   emergencyNumber:"",
   guardian:{
@@ -25,7 +26,7 @@ const initialValues:User = {
     name:""
   },
   marritalStatus:false,
-  nationality:"",
+  nationality:"Indian",
   occupation:"",
   pincode:"",
   religion:"",
@@ -48,6 +49,11 @@ function App() {
               values={values as any}
             />
             <ContactDetails 
+              handleBlur={handleBlur}
+              handleChange={handleChange}
+              values={values as any}
+            />
+            <AddressDetails 
               handleBlur={handleBlur}
               handleChange={handleChange}
               values={values as any}
