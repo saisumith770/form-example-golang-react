@@ -3,18 +3,18 @@ export interface User{
 	name:string
 	dob:string
 	sex:"MALE" | "FEMALE" | "OTHER"
-	mobile:string
+	mobile:number
 	govtID:GovtID
 	//contact details
 	guardian:Guardian
 	email:string
-	emergencyNumber:string
+	emergencyNumber:number
 	//Address details
 	address:string
 	country:string
 	state:string
 	city:string
-	pincode:string
+	pincode:number
 	//other details
 	occupation:string 
 	religion:string 

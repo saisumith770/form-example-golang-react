@@ -18,7 +18,7 @@ export const Grid2:React.FC = () => {
             <TextInput 
                 name='emergencyNumber'
                 placeholder='Enter Emergency No'
-                type='text'
+                type='number'
                 width='160px'
             />
         </div>

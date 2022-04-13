@@ -19,7 +19,7 @@ export const Grid1:React.FC = () => {
         <TextInput 
           name='mobile'
           placeholder='Enter Mobile'
-          type='text'
+          type='number'
           width="300px"
         />
       </div>

@@ -26,7 +26,7 @@ export const TextInput:React.FC<TextInputProps> = ({
                     borderWidth:"1px",
                     height:"20px",
                     marginLeft:"20px",
-                    width
+                    minWidth:width
                 }}
                 value={value}
             />

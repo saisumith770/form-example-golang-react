@@ -44,7 +44,7 @@ export const Grid2:React.FC<props> = ({
             <TextInput 
                 name='pincode'
                 placeholder='Enter Pincode'
-                type='text'
+                type='number'
                 width="150px"
             />
         </div>

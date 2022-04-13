@@ -5,12 +5,13 @@ import { PersonalDetails } from './components/personal_details';
 import { ContactDetails } from './components/contact_details';
 import { User } from './types/user';
 import { AddressDetails } from './components/address_details';
+import { OtherDetails } from './components/other_details';
 
 const initialValues:User = {
   name:"",
   dob:"",
   sex:"OTHER",
-  mobile:"",
+  mobile:0,
   govtID:{
     idType:"",
     id:""
@@ -20,7 +21,7 @@ const initialValues:User = {
   city:"",
   country:"India",
   email:"",
-  emergencyNumber:"",
+  emergencyNumber:0,
   guardian:{
     label:"",
     name:""
@@ -28,7 +29,7 @@ const initialValues:User = {
   marritalStatus:false,
   nationality:"Indian",
   occupation:"",
-  pincode:"",
+  pincode:0,
   religion:"",
   state:""
 }
@@ -38,11 +39,27 @@ function App() {
     <div className="App">
       <Formik initialValues={initialValues} onSubmit={(data,{setSubmitting}) => {
         setSubmitting(true)
-        console.log(data)
+
+        fetch("http://localhost:8080/user/create", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+        .then(response => response.json())
+        .then(json => console.log(json));
+
         setSubmitting(false)
       }}>
         {({isSubmitting,handleBlur,handleChange,values}) => (
-          <Form>
+          <Form style={{
+            // backgroundColor:"red",
+            // width:"1300px"
+            display: "flex",
+            flexDirection:"column",
+            alignItems:"center"
+          }}>
             <PersonalDetails 
               handleBlur={handleBlur}
               handleChange={handleChange}
@@ -54,6 +71,11 @@ function App() {
               values={values as any}
             />
             <AddressDetails 
+              handleBlur={handleBlur}
+              handleChange={handleChange}
+              values={values as any}
+            />
+            <OtherDetails 
               handleBlur={handleBlur}
               handleChange={handleChange}
               values={values as any}

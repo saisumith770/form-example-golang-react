@@ -14,7 +14,7 @@ export const PersonalDetails:React.FC<props> = ({
   values
 }) => {
     return (
-      <>
+      <div>
         <h2 style={{
           fontFamily:"sans-serif"
         }}>
@@ -30,6 +30,6 @@ export const PersonalDetails:React.FC<props> = ({
             values={values as any}
           />
         </div>
-      </>
+      </div>
     )
 }
