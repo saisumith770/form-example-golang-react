@@ -1,10 +1,12 @@
 package main
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/saisumith770/form-validation-react-go/structs"
 
-	"fmt"
+	"log"
 )
 
 func CORSMiddleware() gin.HandlerFunc {
@@ -28,8 +30,12 @@ func main() {
 	server.Use(CORSMiddleware())
 	server.POST("/user/create", func(ctx *gin.Context) {
 		var userDetails structs.User
-		ctx.BindJSON(&userDetails)
-		fmt.Println(userDetails)
+		err := ctx.BindJSON(&userDetails)
+		if err != nil {
+			log.Fatal("Error:", err)
+			ctx.AbortWithStatus(http.StatusBadRequest)
+		}
+		log.Print(userDetails)
 		ctx.JSON(200, "the user has been successfully created")
 	})
 	server.Run()
