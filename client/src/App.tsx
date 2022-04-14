@@ -7,6 +7,9 @@ import { User } from "./types/user";
 import { AddressDetails } from "./components/address_details";
 import { OtherDetails } from "./components/other_details";
 
+import { Alert } from "@mui/material";
+import { useEffect, useState } from "react";
+
 const initialValues: User = {
 	name: "",
 	dob: "",
@@ -35,24 +38,41 @@ const initialValues: User = {
 };
 
 function App() {
+	const [formSubmissionState, setFormSubmissionState] = useState<"error" | "success" | null>(null);
+	useEffect(() => {
+		if (formSubmissionState !== null) {
+			setTimeout(() => {
+				setFormSubmissionState(null);
+			}, 5000);
+		}
+	}, [formSubmissionState]);
 	return (
 		<div className="App">
+			{formSubmissionState === "error" && <Alert severity="error">There was an issue while submitting the form!</Alert>}
+			{formSubmissionState === "success" && <Alert severity="success">Successfully saved patient</Alert>}
 			<Formik
 				initialValues={initialValues}
 				onSubmit={(data, { setSubmitting }) => {
 					setSubmitting(true);
 
-					// fetch("http://localhost:8080/user/create", {
-					//     method: "POST",
-					//     body: JSON.stringify(data),
-					//     headers: {
-					//         "Content-type": "application/json; charset=UTF-8"
-					//     }
-					// })
-					// .then(response => response.json())
-					// .then(json => console.log(json));
+					fetch("http://localhost:8080/user/create", {
+						method: "POST",
+						body: JSON.stringify(data),
+						headers: {
+							"Content-type": "application/json; charset=UTF-8",
+						},
+					})
+						.then((response) => response.json())
+						.then((json) => {
+							console.log(json);
+							setFormSubmissionState("success");
+						})
+						.catch((err) => {
+							console.log(err);
+							setFormSubmissionState("error");
+						});
 
-					console.log(data);
+					// console.log(data);
 
 					setSubmitting(false);
 				}}
